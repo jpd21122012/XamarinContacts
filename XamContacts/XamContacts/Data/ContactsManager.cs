@@ -49,7 +49,7 @@ namespace XamContacts.Data
            GetItemsGroupedAsync()
         {
             IEnumerable<Contact> contacts =
-                await contactsTable.ToEnumerableAsync();
+                await GetItemsAsync();
             IEnumerable<Grouping<string, Contact>> sorted =
                 new Grouping<string, Contact>[0];
             if (contacts != null)
@@ -64,7 +64,7 @@ namespace XamContacts.Data
             }
             return new ObservableCollection<Grouping<string, Contact>>(sorted);
         }
-        public async Task<Contact> GetItemAsync(int id)
+        public async Task<Contact> GetItemAsync(string id)
         {
             var items = await contactsTable.Where(i => i.Id == id)
                 .ToListAsync();
@@ -74,7 +74,7 @@ namespace XamContacts.Data
         {
             try
             {
-                if (item.Id != 0)
+                if (item.Id != null)
                 {
                     await contactsTable.UpdateAsync(item);
                 }

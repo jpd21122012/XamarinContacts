@@ -33,7 +33,7 @@ namespace XamContacts.ViewModel
         public async Task SaveContact()
         {
             //await App.Database.SaveItemAsync(CurrentContact);
-            ContactsManager.DefaultManager.SaveItemAsync(CurrentContact);
+            await ContactsManager.DefaultManager.SaveItemAsync(CurrentContact);
             await Navigation.PopToRootAsync();
         }
     }

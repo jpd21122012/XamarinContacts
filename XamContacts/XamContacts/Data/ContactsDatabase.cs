@@ -47,7 +47,7 @@ namespace XamContacts.Data
             return new ObservableCollection<Grouping<string, Contact>>(sorted);
         }
 
-        public Task<Contact> GetItemAsync(int id)
+        public Task<Contact> GetItemAsync(string id)
         {
             return database.Table<Contact>()
                 .Where(i => i.Id == id)
@@ -56,7 +56,7 @@ namespace XamContacts.Data
 
         public Task<int> SaveItemAsync(Contact item)
         {
-            if (item.Id != 0)
+            if (item.Id != null)
             {
                 return database.UpdateAsync(item);
             }

@@ -27,7 +27,7 @@ namespace XamContacts.ViewModel
             Navigation = navigation;
             Task.Run(async () =>
                 //ContactsList = await App.Database.GetItemsGroupedAsync()).Wait();
-                ContactsList = await ContactsManager.DefaultManager.GetItemsGroupedAsync());
+                ContactsList = await ContactsManager.DefaultManager.GetItemsGroupedAsync()).Wait();
             AddContactCommand = new Command(async () =>await
             GoToContactDetailPage());
             ItemTappedCommand = new Command(async() => GoToContactDetailPage(CurrentContact));
