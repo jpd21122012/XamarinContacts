@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using XamContacts.Helpers;
 using XamContacts.Model;
 using XamContacts.View;
+using XamContacts.Data;
 
 namespace XamContacts.ViewModel
 {
@@ -25,7 +26,8 @@ namespace XamContacts.ViewModel
         {
             Navigation = navigation;
             Task.Run(async () =>
-                ContactsList = await App.Database.GetItemsGroupedAsync()).Wait();
+                //ContactsList = await App.Database.GetItemsGroupedAsync()).Wait();
+                ContactsList = await ContactsManager.DefaultManager.GetItemsGroupedAsync());
             AddContactCommand = new Command(async () =>await
             GoToContactDetailPage());
             ItemTappedCommand = new Command(async() => GoToContactDetailPage(CurrentContact));
