@@ -9,6 +9,7 @@ using XamContacts.Helpers;
 using XamContacts.Model;
 using XamContacts.View;
 using XamContacts.Data;
+using Plugin.Connectivity;
 
 namespace XamContacts.ViewModel
 {
@@ -25,9 +26,10 @@ namespace XamContacts.ViewModel
         public ContactsPageViewModel(INavigation navigation)
         {
             Navigation = navigation;
+            var isConnected = CrossConnectivity.Current.IsConnected;
             Task.Run(async () =>
                 //ContactsList = await App.Database.GetItemsGroupedAsync()).Wait();
-                ContactsList = await ContactsManager.DefaultManager.GetItemsGroupedAsync()).Wait();
+                ContactsList = await ContactsManager.DefaultManager.GetItemsGroupedAsync(isConnected)).Wait();
             AddContactCommand = new Command(async () =>await
             GoToContactDetailPage());
             ItemTappedCommand = new Command(async() => GoToContactDetailPage(CurrentContact));
