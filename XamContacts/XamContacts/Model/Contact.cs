@@ -5,14 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 using Newtonsoft.Json;
+using XamContacts.Abstractions;
 
 namespace XamContacts.Model
 {
-    public class Contact
+    public class Contact:TableData
     {
-        //[PrimaryKey, AutoIncrement]
-        [JsonProperty("id")]
-        public string  Id { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("phone")]

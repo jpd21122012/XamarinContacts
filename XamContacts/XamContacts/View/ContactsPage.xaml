@@ -8,6 +8,10 @@
             Text="Agregar"
             Order="Primary"
             Command="{Binding AddContactCommand}"></ToolbarItem>
+        <ToolbarItem
+            Text="Login"
+            Order="Primary"
+            Command="{Binding LoginCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ListView
         ItemsSource="{Binding ContactsList}"

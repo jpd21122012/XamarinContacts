@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace XamContacts.iOS
 {
@@ -27,6 +28,10 @@ namespace XamContacts.iOS
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            return XamContacts.App.CurrentClient.ResumeWithURL(url);
         }
     }
 }

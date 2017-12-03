@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using XamContacts.Abstractions;
 using XamContacts.Data;
 using XamContacts.Services;
 using XamContacts.View;
@@ -36,11 +38,13 @@ namespace XamContacts
                 return database;
             }
         }
+        public static ICloudService CloudService { get; set; }
+        public static MobileServiceClient CurrentClient { get; set; }
 
         public App()
         {
             InitializeComponent();
-
+            CloudService = new AzureCloudService();
             MainPage = new NavigationPage(new ContactsPage());
         }
 

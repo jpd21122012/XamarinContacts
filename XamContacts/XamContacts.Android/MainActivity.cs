@@ -6,6 +6,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using XamContacts.Droid.Services;
+using Xamarin.Forms;
+using XamContacts.Services;
 
 namespace XamContacts.Droid
 {
@@ -18,8 +21,10 @@ namespace XamContacts.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            ((LoginProvider)DependencyService
+                .Get<ILoginProvider>()).Init(this);
             LoadApplication(new App());
         }
     }
